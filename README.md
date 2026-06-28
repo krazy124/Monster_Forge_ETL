@@ -1,126 +1,86 @@
 # MonsterForge AWS ETL Pipeline
 
-## Overview
+> **An end-to-end AWS Data Engineering project demonstrating a production-style ETL pipeline built with PySpark, Amazon S3, AWS Glue, Amazon Athena, and boto3.**
 
-The **MonsterForge AWS ETL Pipeline** is an end-to-end data engineering project demonstrating the design and implementation of a modern cloud-based ETL workflow using AWS and PySpark.
+---
 
-The project ingests raw CSV data, performs automated data quality validation and cleansing with PySpark, separates invalid records into a quarantine dataset, publishes curated datasets to Amazon S3, updates the AWS Glue Data Catalog, and validates the completed pipeline using Amazon Athena.
+## Project Highlights
 
-Rather than focusing on data analysis, this project emphasizes the engineering practices involved in building reliable, repeatable, and production-style data pipelines.
+* End-to-end ETL pipeline using PySpark
+* Automated data quality validation
+* Clean / Quarantine data processing
+* Versioned data lake architecture (`latest` + `run_id`)
+* AWS Glue Data Catalog automation
+* Amazon Athena validation queries
+* Modular, reusable Python design
+* Centralized AWS error handling
 
 ---
 
 ## Architecture
 
+> *(Insert architecture diagram here)*
+
 ```
-                Raw CSV
-                   │
-                   ▼
-        Amazon S3 (Raw Landing Zone)
-                   │
-                   ▼
-          PySpark ETL Pipeline
-                   │
-        ┌──────────┴──────────┐
-        ▼                     ▼
-   Clean Dataset      Quarantine Dataset
-        │                     │
-        └──────────┬──────────┘
-                   ▼
-            Amazon S3 Data Lake
-                   │
-                   ▼
-          AWS Glue Crawlers
-                   │
-                   ▼
-        AWS Glue Data Catalog
-                   │
-                   ▼
-          Amazon Athena
-                   │
-                   ▼
-         Automated Validation
+Raw CSV
+    │
+    ▼
+Amazon S3 (Raw)
+    │
+    ▼
+PySpark ETL
+    │
+ ┌──┴──────────┐
+ ▼             ▼
+Clean      Quarantine
+ │             │
+ └──────┬──────┘
+        ▼
+     Amazon S3
+           │
+           ▼
+    AWS Glue Crawlers
+           │
+           ▼
+ AWS Glue Data Catalog
+           │
+           ▼
+    Amazon Athena
+           │
+           ▼
+ Automated Validation
 ```
 
 ---
 
-## Features
+## Pipeline Features
 
-* Automated raw data ingestion
-* PySpark data transformation pipeline
+### Data Quality
+
 * Header normalization
 * Whitespace trimming
-* Blank value handling
-* Data type validation
+* Blank value normalization
+* Duplicate detection
+* Invalid record quarantine
 * Multi-format date parsing
 * Currency normalization
-* Negative value detection and correction
-* Duplicate record detection
-* Clean / Quarantine dataset separation
-* Amazon S3 versioned storage (`latest` and `run_id`)
-* Automated upload verification using boto3
+* Negative value correction
+* Data type validation
+
+### AWS Integration
+
+* Amazon S3 uploads
+* Object verification
+* Versioned storage
 * AWS Glue crawler automation
-* Amazon Athena validation queries
-* Modular Python design
-* Centralized AWS error handling
+* AWS Glue Data Catalog
+* Amazon Athena validation
 
 ---
 
-## Technologies
+## Example Pipeline Output
 
-| Technology    | Purpose                          |
-| ------------- | -------------------------------- |
-| Python        | Pipeline orchestration           |
-| PySpark       | Distributed data transformations |
-| Amazon S3     | Data lake storage                |
-| AWS Glue      | Metadata cataloging              |
-| Amazon Athena | SQL validation layer             |
-| boto3         | AWS SDK                          |
-| Pandas        | Final CSV export                 |
-| Git / GitHub  | Version control                  |
-
----
-
-## Project Structure
-
-```
-Monster_Forge_ETL/
-
-├── src/
-│   └── monsterforge_etl.py
-│
-├── data/
-│   └── MonsterForge_monsters_raw_100.csv
-│
-├── docs/
-│
-├── output/
-│
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
-
----
-
-## ETL Workflow
-
-1. Upload raw dataset to Amazon S3.
-2. Generate a pre-transformation data quality report.
-3. Execute PySpark transformations.
-4. Detect duplicate records.
-5. Split records into clean and quarantine datasets.
-6. Export datasets locally.
-7. Publish datasets to Amazon S3.
-8. Verify uploaded objects.
-9. Update the AWS Glue Data Catalog.
-10. Validate the published dataset using Amazon Athena.
-
----
-
-## Sample Pipeline Output
-
-```
+```text
 ========== PIPELINE COMPLETE ==========
 
 Run ID:
@@ -130,6 +90,7 @@ Clean Rows..............84
 Quarantine Rows.........21
 
 S3 Upload...............SUCCESS
+Glue Crawlers...........SUCCESS
 Athena Validation.......SUCCESS
 
 ✓ MonsterForge ETL pipeline completed successfully
@@ -137,38 +98,71 @@ Athena Validation.......SUCCESS
 
 ---
 
-## Skills Demonstrated
+## Technologies
 
-* ETL pipeline development
-* Cloud data lake architecture
-* Data quality validation
-* Data cleansing
-* AWS service integration
-* Data catalog management
-* SQL-based validation
-* Modular Python development
-* Error handling
-* Pipeline automation
+| Category        | Technology    |
+| --------------- | ------------- |
+| Language        | Python        |
+| Processing      | PySpark       |
+| Cloud           | AWS           |
+| Storage         | Amazon S3     |
+| Catalog         | AWS Glue      |
+| Query Engine    | Amazon Athena |
+| SDK             | boto3         |
+| Version Control | Git & GitHub  |
+
+---
+
+## Repository Structure
+
+```text
+Monster_Forge_ETL/
+│
+├── src/
+│   └── monsterforge_etl.py
+│
+├── data/
+│
+├── docs/
+│
+├── output/
+│
+├── README.md
+├── requirements.txt
+└── .gitignore
+```
+
+---
+
+## Engineering Decisions
+
+A few design decisions intentionally mirror production ETL pipelines:
+
+* Every pipeline execution generates a unique `run_id` for data lineage.
+* Clean and quarantined datasets are written independently.
+* The `latest` folder provides easy access to the newest successful dataset.
+* Historical pipeline runs remain available for auditing.
+* All AWS interactions are centralized through a reusable error-handling wrapper.
+* Athena is used as the final validation step after the Glue Data Catalog is updated.
 
 ---
 
 ## Future Enhancements
 
-Potential future improvements include:
+Planned improvements include:
 
 * Environment-based configuration
 * Structured logging
-* Quality report generation
+* Automated quality report generation
 * Apache Airflow orchestration
 * AWS Lambda event triggers
 * Amazon Redshift integration
-* Automated unit testing
-* Infrastructure as Code
+* Infrastructure as Code (Terraform)
 
 ---
 
-## About This Project
+## About
 
-This project was developed as part of my transition into Data Engineering with the goal of demonstrating practical experience building cloud-native ETL pipelines using modern AWS services and PySpark.
+This project was built as part of my transition into Data Engineering with the goal of demonstrating practical experience designing, automating, and validating cloud-native ETL pipelines using modern AWS services.
 
-The emphasis throughout the project is on producing maintainable, modular, and production-oriented code rather than simply demonstrating individual AWS services in isolation.
+The focus of this repository is on building reliable, maintainable, and production-oriented data engineering workflows rather than performing downstream analytics.
