@@ -28,7 +28,17 @@
 ![s3 Quarantine](s3_qurantine_zone.png)
 ![s3 Reports](s3_report_zone.png)
 
-## Pipeline Features
+## Pipeline Features & AWS Integration
+
+* Amazon S3 uploads
+* Object verification
+* Versioned storage
+* AWS Glue crawler automation
+* AWS Glue Data Catalog
+* Amazon Athena validation
+
+![alt text](terminal_1.png)
+![alt text](terminal_2.png)
 
 ### Data Quality
 
@@ -42,18 +52,6 @@
 * Negative value correction
 * Data type validation
 ![spark tarsnformations](terminal_3.png)
-
-### AWS Integration
-
-* Amazon S3 uploads
-* Object verification
-* Versioned storage
-* AWS Glue crawler automation
-* AWS Glue Data Catalog
-* Amazon Athena validation
-
-![alt text](terminal_1.png)
-![alt text](terminal_2.png)
 
 ## Example Pipeline Output
 
