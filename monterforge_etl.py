@@ -1,17 +1,13 @@
 from pathlib import Path
-from pyspark.sql.functions import (col, lit, lower, upper, trim, regexp_replace, when, coalesce,
-                                   to_date, date_format, current_timestamp, concat, concat_ws, split,
-                                   substring, count, avg,  expr, countDistinct, initcap)
+from pyspark.sql.functions import (col, lit, lower, upper, trim, regexp_replace, when, coalesce, expr, initcap)
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, coalesce, expr
 import boto3
 import logging
 from botocore.exceptions import ClientError, NoCredentialsError
-from pprint import pprint
 from datetime import datetime, time
 import pandas as pd
 import time
-import os
 
 
 s3 = boto3.client("s3")
@@ -386,9 +382,10 @@ def pipeline_complete(clean_df, quarantine_df, run_id):
     return
 
 
-clean_df, quarantine_df = transform_data(df)
-clean_local_file, quarantine_local_file = export_to_local(clean_df, quarantine_df, run_id)
-export_to_s3(clean_local_file, quarantine_local_file, run_id)
-run_glue_crawlers()
-run_athena_validation()
-pipeline_complete(clean_df, quarantine_df, run_id)
+if __name__ == "__main__":
+    clean_df, quarantine_df = transform_data(df)
+    clean_local_file, quarantine_local_file = export_to_local(clean_df, quarantine_df, run_id)
+    export_to_s3(clean_local_file, quarantine_local_file, run_id)
+    run_glue_crawlers()
+    run_athena_validation()
+    pipeline_complete(clean_df, quarantine_df, run_id)

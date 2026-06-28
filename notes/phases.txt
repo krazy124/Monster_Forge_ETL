@@ -1,0 +1,100 @@
+
+Phase 1 — Repository Cleanup (Today)
+
+Monster_Forge_ETL/
+│
+├── README.md
+├── requirements.txt
+├── .gitignore
+│
+├── src/
+│   └── monsterforge_etl.py
+│
+├── data/
+│   └── MonsterForge_monsters_raw_100.csv
+│
+├── docs/
+│
+└── output/
+
+
+Phase 2 — Professional README
+
+The most important file in the repository.
+
+include:
+
+Project overview
+Architecture diagram
+Technologies
+Pipeline flow
+Screenshots
+How to run
+Sample output
+
+I want this README to be something you're genuinely proud to send to employers.
+
+Phase 3 — Architecture Diagram
+
+Make a clean diagram like:
+
+Raw CSV
+    │
+    ▼
+S3 Raw
+    │
+    ▼
+PySpark ETL
+    │
+    ▼
+Clean / Quarantine
+    │
+    ▼
+S3
+    │
+    ▼
+Glue Crawlers
+    │
+    ▼
+Glue Catalog
+    │
+    ▼
+Athena Validation
+
+Much nicer looking than ASCII.
+
+Phase 4 — Screenshots
+
+Include captures:
+
+terminal output
+S3 structure
+Glue
+Athena validation
+
+Helps recruiters understand the project in seconds.
+
+Phase 5 — Final polish
+remove unused imports
+rename variables
+configuration section
+environment variables
+main() function
+clean comments
+
+Good commit history:
+
+Initial project structure
+
+Add PySpark ETL pipeline
+
+Add S3 publish and verification
+
+Add Glue crawler automation
+
+Add Athena validation
+
+Add sample output and documentation
+
+Polish README for portfolio
+
