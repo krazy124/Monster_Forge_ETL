@@ -19,39 +19,7 @@
 
 ## Architecture
 
-> *(Insert architecture diagram here)*
 
-```
-Raw CSV
-    │
-    ▼
-Amazon S3 (Raw)
-    │
-    ▼
-PySpark ETL
-    │
- ┌──┴──────────┐
- ▼             ▼
-Clean      Quarantine
- │             │
- └──────┬──────┘
-        ▼
-     Amazon S3
-           │
-           ▼
-    AWS Glue Crawlers
-           │
-           ▼
- AWS Glue Data Catalog
-           │
-           ▼
-    Amazon Athena
-           │
-           ▼
- Automated Validation
-```
-
----
 
 ## Pipeline Features
 
