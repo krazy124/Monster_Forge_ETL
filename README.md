@@ -37,8 +37,8 @@
 * AWS Glue Data Catalog
 * Amazon Athena validation
 
-![alt text](terminal_1.png)
-![alt text](terminal_2.png)
+![Terminal output 1](terminal_1.png)
+![Terminal output 2](terminal_2.png)
 
 ### Data Quality
 
@@ -55,10 +55,10 @@
 
 ## Example Pipeline Output
 
-![alt text](terminal_4.png)
-![alt text](terminal_5.png)
-![alt text](terminal_6.png)
-![alt text](terminal_7.png)
+![Terminal output 4](terminal_4.png)
+![Terminal output 5](terminal_5.png)
+![Terminal output 6](terminal_6.png)
+![Terminal output 7](terminal_7.png)
 
 ## Technologies
 
