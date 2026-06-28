@@ -20,6 +20,11 @@
 ## Architecture
 
 ![MonsterForge Architecture](architecture_display.png)
+![s3 Root](s3-root.png)
+![s3 Raw](s3_raw_zone.png)
+![s3 Clean](s3_clean_zone.png)
+![s3 Quarantine](s3_qurantine_zone.png)
+![s3 Reports](s3_report_zone.png)
 
 ## Pipeline Features
 
@@ -34,6 +39,7 @@
 * Currency normalization
 * Negative value correction
 * Data type validation
+![spark tarsnformations](terminal_3.png)
 
 ### AWS Integration
 
@@ -44,27 +50,15 @@
 * AWS Glue Data Catalog
 * Amazon Athena validation
 
----
+![alt text](terminal_1.png)
+![alt text](terminal_2.png)
 
 ## Example Pipeline Output
 
-```text
-========== PIPELINE COMPLETE ==========
-
-Run ID:
-20260628_131212
-
-Clean Rows..............84
-Quarantine Rows.........21
-
-S3 Upload...............SUCCESS
-Glue Crawlers...........SUCCESS
-Athena Validation.......SUCCESS
-
-✓ MonsterForge ETL pipeline completed successfully
-```
-
----
+![alt text](terminal_4.png)
+![alt text](terminal_5.png)
+![alt text](terminal_6.png)
+![alt text](terminal_7.png)
 
 ## Technologies
 
