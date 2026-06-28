@@ -75,27 +75,6 @@
 
 ---
 
-## Repository Structure
-
-```text
-Monster_Forge_ETL/
-│
-├── src/
-│   └── monsterforge_etl.py
-│
-├── data/
-│
-├── docs/
-│
-├── output/
-│
-├── README.md
-├── requirements.txt
-└── .gitignore
-```
-
----
-
 ## Engineering Decisions
 
 A few design decisions intentionally mirror production ETL pipelines:
