@@ -37,7 +37,7 @@
 * AWS Glue Data Catalog
 * Amazon Athena validation
 
-![Terminal output 1](terminal_1.png)
+![Terminal output 1](terminal_1-1.png)
 ![Terminal output 2](terminal_2.png)
 
 ### Data Quality
