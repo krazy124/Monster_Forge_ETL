@@ -1,7 +1,6 @@
 from pathlib import Path
 from pyspark.sql.functions import (col, lit, lower, upper, trim, regexp_replace, when, coalesce, expr, initcap)
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, coalesce, expr
 import boto3
 import logging
 from botocore.exceptions import ClientError, NoCredentialsError
