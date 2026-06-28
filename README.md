@@ -6,72 +6,120 @@
 
 ## Project Highlights
 
-* End-to-end ETL pipeline using PySpark
-* Automated data quality validation
-* Clean / Quarantine data processing
-* Versioned data lake architecture (`latest` + `run_id`)
-* AWS Glue Data Catalog automation
-* Amazon Athena validation queries
-* Modular, reusable Python design
-* Centralized AWS error handling
+- End-to-end ETL pipeline using PySpark
+- Automated data quality validation
+- Clean / Quarantine data processing
+- Versioned data lake architecture (`latest` + `run_id`)
+- AWS Glue Data Catalog automation
+- Amazon Athena validation queries
+- Modular, reusable Python design
+- Centralized AWS error handling
 
 ---
 
 ## Architecture
 
-![MonsterForge Architecture](architecture_display.png)
+![MonsterForge AWS ETL Architecture](docs/images/diagrams/architecture.png)
 
-## AWS Architecture Screenshots
-![s3 Root](s3-root.png)
-![s3 Raw](s3_raw_zone.png)
-![s3 Clean](s3_clean_zone.png)
-![s3 Quarantine](s3_qurantine_zone.png)
-![s3 Reports](s3_report_zone.png)
+---
+
+## Amazon S3 Data Lake
+
+The ETL pipeline organizes data into separate storage zones for raw ingestion, clean datasets, quarantined records, reporting, and Athena query results.
+
+### S3 Bucket Layout
+
+![Amazon S3 Root Bucket](docs/images/s3_screenshots/s3-root.png)
+
+### Raw Zone
+
+![Amazon S3 Raw Zone](docs/images/s3_screenshots/s3_raw_zone.png)
+
+### Clean Zone
+
+![Amazon S3 Clean Zone](docs/images/s3_screenshots/s3_clean_zone.png)
+
+### Quarantine Zone
+
+![Amazon S3 Quarantine Zone](docs/images/s3_screenshots/s3_quarantine_zone.png)
+
+### Reports Zone
+
+![Amazon S3 Reports Zone](docs/images/s3_screenshots/s3_report_zone.png)
+
+---
 
 ## Pipeline Features & AWS Integration
 
-* Amazon S3 uploads
-* Object verification
-* Versioned storage
-* AWS Glue crawler automation
-* AWS Glue Data Catalog
-* Amazon Athena validation
+- Amazon S3 uploads
+- Object verification
+- Versioned storage
+- AWS Glue crawler automation
+- AWS Glue Data Catalog
+- Amazon Athena validation
 
-![Terminal output 1](terminal_1-1.png)
-![Terminal output 2](terminal_2.png)
+### Terminal Output
 
-### Data Quality
+#### Pre-Transformation Quality Report
 
-* Header normalization
-* Whitespace trimming
-* Blank value normalization
-* Duplicate detection
-* Invalid record quarantine
-* Multi-format date parsing
-* Currency normalization
-* Negative value correction
-* Data type validation
-![spark tarsnformations](terminal_3.png)
+![Pre-Transformation Quality Report](docs/images/terminal_screenshots/terminal_1.png)
+
+#### Raw Dataset Preview
+
+![Raw Dataset Preview](docs/images/terminal_screenshots/terminal_2.png)
+
+---
+
+## Data Quality Transformations
+
+- Header normalization
+- Whitespace trimming
+- Blank value normalization
+- Duplicate detection
+- Invalid record quarantine
+- Multi-format date parsing
+- Currency normalization
+- Negative value correction
+- Data type validation
+
+#### Transformation Pipeline
+
+![Transformation Pipeline](docs/images/terminal_screenshots/terminal_3.png)
+
+---
 
 ## Example Pipeline Output
 
-![Terminal output 4](terminal_4.png)
-![Terminal output 5](terminal_5.png)
-![Terminal output 6](terminal_6.png)
-![Terminal output 7](terminal_7.png)
+#### Clean Dataset
+
+![Clean Dataset Preview](docs/images/terminal_screenshots/terminal_4.png)
+
+#### Clean / Quarantine Summary
+
+![Pipeline Summary](docs/images/terminal_screenshots/terminal_5.png)
+
+#### S3 Upload Verification
+
+![Amazon S3 Upload Verification](docs/images/terminal_screenshots/terminal_6.png)
+
+#### Athena Validation & Pipeline Completion
+
+![Athena Validation](docs/images/terminal_screenshots/terminal_7.png)
+
+---
 
 ## Technologies
 
-| Category        | Technology    |
-| --------------- | ------------- |
-| Language        | Python        |
-| Processing      | PySpark       |
-| Cloud           | AWS           |
-| Storage         | Amazon S3     |
-| Catalog         | AWS Glue      |
-| Query Engine    | Amazon Athena |
-| SDK             | boto3         |
-| Version Control | Git & GitHub  |
+| Category | Technology |
+|----------|------------|
+| Language | Python |
+| Processing | PySpark |
+| Cloud | Amazon Web Services (AWS) |
+| Storage | Amazon S3 |
+| Metadata Catalog | AWS Glue |
+| Query Engine | Amazon Athena |
+| SDK | boto3 |
+| Version Control | Git & GitHub |
 
 ---
 
@@ -79,12 +127,12 @@
 
 A few design decisions intentionally mirror production ETL pipelines:
 
-* Every pipeline execution generates a unique `run_id` for data lineage.
-* Clean and quarantined datasets are written independently.
-* The `latest` folder provides easy access to the newest successful dataset.
-* Historical pipeline runs remain available for auditing.
-* All AWS interactions are centralized through a reusable error-handling wrapper.
-* Athena is used as the final validation step after the Glue Data Catalog is updated.
+- Every pipeline execution generates a unique `run_id` for data lineage.
+- Clean and quarantined datasets are written independently.
+- The `latest` folder provides a stable endpoint for downstream consumers.
+- Historical pipeline runs are preserved for auditing and traceability.
+- All AWS interactions are centralized through a reusable error-handling wrapper.
+- Amazon Athena performs post-load validation after the AWS Glue Data Catalog has been updated.
 
 ---
 
@@ -92,13 +140,13 @@ A few design decisions intentionally mirror production ETL pipelines:
 
 Planned improvements include:
 
-* Environment-based configuration
-* Structured logging
-* Automated quality report generation
-* Apache Airflow orchestration
-* AWS Lambda event triggers
-* Amazon Redshift integration
-* Infrastructure as Code (Terraform)
+- Environment-based configuration
+- Structured logging
+- Automated quality report generation
+- Apache Airflow orchestration
+- AWS Lambda event triggers
+- Amazon Redshift integration
+- Infrastructure as Code (Terraform)
 
 ---
 
