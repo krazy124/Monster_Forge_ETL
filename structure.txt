@@ -1,0 +1,25 @@
+MonsterForge-ETL/
+│
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── LICENSE
+│
+├── data/
+│   └── MonsterForge_monsters_raw_100.csv
+│
+├── output/
+│   └── (gitignored)
+│
+├── docs/
+│   ├── architecture.png
+│   ├── sample_pipeline_output.txt
+│   ├── s3_structure.png
+│   ├── glue_tables.png
+│   └── athena_validation.png
+│
+├── src/
+│   └── monsterforge_etl.py
+│
+└── images/
+    └── (optional screenshots for README)
