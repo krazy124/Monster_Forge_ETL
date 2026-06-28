@@ -41,7 +41,7 @@ The ETL pipeline organizes data into separate storage zones for raw ingestion, c
 
 ### Quarantine Zone
 
-![Amazon S3 Quarantine Zone](docs\images\s3_screenshots\s3_qurantine_zone.png)
+![Amazon S3 Quarantine Zone](docs/images/s3_screenshots/s3_qurantine_zone.png)
 
 ### Reports Zone
 
