@@ -19,7 +19,7 @@
 
 ## Architecture
 
-
+![MonsterForge Architecture](architecture_display.png)
 
 ## Pipeline Features
 
