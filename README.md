@@ -20,6 +20,8 @@
 ## Architecture
 
 ![MonsterForge Architecture](architecture_display.png)
+
+## AWS Architecture Screenshots
 ![s3 Root](s3-root.png)
 ![s3 Raw](s3_raw_zone.png)
 ![s3 Clean](s3_clean_zone.png)
